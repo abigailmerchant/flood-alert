@@ -3,7 +3,7 @@ name: Flood Alert Email
 on:
   push:
     paths:
-      - 'alert.png'
+      - 'alert.png'  # Trigger only when alert.png is updated
 
 jobs:
   send_email:
@@ -16,8 +16,7 @@ jobs:
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Flood Alert"
-          body: "Flooding detected! The alert image has been pushed to GitHub."
+          subject: "🚨 Flood Alert Triggered!"
+          body: "Flooding detected! The alert image has been updated. Check GitHub for details."
           to: "cubesat.testing@gmail.com"
           from: "cubesat.testing@gmail.com"
-
