@@ -1,0 +1,23 @@
+name: Flood Alert Email
+
+on:
+  push:
+    paths:
+      - 'alert.png'
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email alert
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Flood Alert"
+          body: "Flooding detected! The alert image has been pushed to GitHub."
+          to: "cubesat.testing@gmail.com"
+          from: "cubesat.testing@gmail.com"
+
